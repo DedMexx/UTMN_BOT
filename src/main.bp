@@ -1,0 +1,19 @@
+{
+  "positions" : [ {
+    "id" : "/Welcome",
+    "x" : 240,
+    "y" : 0
+  }, {
+    "id" : "/CatchAll",
+    "x" : 240,
+    "y" : 525
+  }, {
+    "id" : "/SuggestHelp",
+    "x" : 620,
+    "y" : 0
+  }, {
+    "id" : "/AskPhone",
+    "x" : 1100,
+    "y" : 0
+  } ]
+}
