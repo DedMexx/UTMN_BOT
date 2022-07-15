@@ -104,6 +104,9 @@ theme: /
             $reactions.answer(discount);
     state: Direction
         intent!: /direction
-        a: Итак, вы хотите купить билет.
-        script: log("@@@ " + toPrettyString($spareTree);
-        a: Итак, вы хотите купить билет
+        script: 
+            log("@@@ " + toPrettyString($parseTree));
+            $session.date = $parseTree._date.year + "/" + $parseTree._date.month + "/" + $parseTree._date.day;
+            $session.departure =  capitalize($parseTree._departure);
+            $session.destination =  capitalize($parseTree._destination);
+        a: {{$session.date}} отправляемся из города {{$session.departure}} в город {{$session.destination}}
