@@ -9,6 +9,9 @@ tests:
   include:
     - test.xml
 
+injector:
+    botName: Валерия
+
 sts:
     noMatchThreshold: 0.2
 
