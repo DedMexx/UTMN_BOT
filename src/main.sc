@@ -5,6 +5,12 @@ require: localPatterns.sc
 
 require: phoneNumber/phoneNumber.sc
     module = sys.zb-common
+    
+init:
+    bind("postProcess", function($context) {
+        $context.session.lastState = $context.currentState;
+        log("@@@ " + $context.session.lastState);
+    })
 
 theme: /
 
@@ -13,22 +19,24 @@ theme: /
         q!: *start
         q!: $hi
         script:
+            $jsapi.startSession();
             $response.replies = $response.replies || [];
             $response.replies.push({
                 type: "image",
                 imageUrl: "http://apikabu.ru/img_n/2012-10_1/1jy.jpg",
-                text: "Кот Гитлера"
+                text: "&nbsp;&nbsp;&nbsp;Кот Гитлера"
             });
         random:
             a: Здравствуйте!
             a: Приветствую!
-        a: Меня зовут {{$injector.botName}}
+        a: Меня зовут {{capitalize($injector.botName)}}
         go!: /SuggestHelp
 
     
     state: CatchAll || noContext = true
         event!: noMatch
         a: Извините, я вас не понял. Переформулируйте, пожалуйста.
+        go!: {{$session.lastState}}
     
     state: SuggestHelp
         q: Отмена || fromState = /AskPhone, onlyThisState = true
@@ -81,7 +89,21 @@ theme: /
                 $client.phone = $session.probablyPhone;
                 delete $session.probablyPhone;
                 delete $session.Phone;
+            go!: /Discount
         
         state: Disagree
             q: (нет/но/неверно/не/неа/не верно/не мой)
             go!: /AskPhone
+    
+    state: Discount
+        script:
+            var nowDate = $jsapi.dateForZone("Europe/Moscow", "dd.MM");
+            var answerText  = "Сегодня (" + nowDate + ") действует акция!";
+            var discount = "Купите билет сегодня!\nПолучите скидку 10% на следующую покупку";
+            $reactions.answer(answerText);
+            $reactions.answer(discount);
+    state: Direction
+        intent!: /direction
+        a: Итак, вы хотите купить билет.
+        script: log("@@@ " + toPrettyString($spareTree);
+        a: Итак, вы хотите купить билет

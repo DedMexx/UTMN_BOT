@@ -10,7 +10,7 @@ tests:
     - test.xml
 
 injector:
-    botName: Валерия
+    botName: валерия
 
 sts:
     noMatchThreshold: 0.2
