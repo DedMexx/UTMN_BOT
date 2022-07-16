@@ -1,6 +1,18 @@
 <test>
     <test-case>
+        <context var="client">
+            {"phone": "+89099093311"}
+        </context>
         <q>/start</q>
-        <a></a>
+        <a state="/Welcome"/>
+        <a state="/Welcome"/>
+        <a state="/SuggestHelp"/>
+        <q>да</q>
+        <a>Отлично</a>
+        <!--<a>Для продолжения введите, пожалуйста, ваш номер телефона:</a>-->
+        <!--<q>89091863210</q>-->
+        <a state="/Confirm"/>
+        <q>нет</q>
+        <a state="/AskPhone"/>
     </test-case>
 </test>    
