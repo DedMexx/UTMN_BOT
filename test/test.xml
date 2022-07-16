@@ -1,2 +1,6 @@
 <test>
+    <test-case>
+        <q>/start</q>
+        <a></a>
+    </test-case>
 </test>    

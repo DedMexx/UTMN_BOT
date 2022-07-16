@@ -6,6 +6,8 @@ require: localPatterns.sc
 require: phoneNumber/phoneNumber.sc
     module = sys.zb-common
     
+require: function.js
+    
 init:
     bind("postProcess", function($context) {
         $context.session.lastState = $context.currentState;
@@ -102,6 +104,7 @@ theme: /
             var discount = "Купите билет сегодня!\nПолучите скидку 10% на следующую покупку";
             $reactions.answer(answerText);
             $reactions.answer(discount);
+            
     state: Direction
         intent!: /direction
         script: 
@@ -110,3 +113,10 @@ theme: /
             $session.departure =  capitalize($parseTree._departure);
             $session.destination =  capitalize($parseTree._destination);
         a: {{$session.date}} отправляемся из города {{$session.departure}} в город {{$session.destination}}
+        go!: /Weather
+    
+    state: Weather
+        script: 
+            $temp.weather = getCurrentWeather($session.destination);
+        if: $temp.weather
+            a: В городе {{$session.destination}} сейчас {{$temp.weather.description}}, температура {{$temp.weather.temp}}°C
