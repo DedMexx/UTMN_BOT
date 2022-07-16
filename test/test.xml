@@ -1,4 +1,21 @@
 <test>
+    <!--<test-case>-->
+    <!--    <context var="client">-->
+    <!--        {"phone": "+79099093311"}-->
+    <!--    </context>-->
+    <!--    <q>/start</q>-->
+    <!--    <a state="/Welcome"/>-->
+    <!--    <a state="/Welcome"/>-->
+    <!--    <a state="/SuggestHelp"/>-->
+    <!--    <q>да</q>-->
+    <!--    <a>Отлично</a>-->
+    <!--    <a>Для продолжения введите, пожалуйста, ваш номер телефона:</a>-->
+    <!--    <q>89091863210</q>-->
+    <!--    <a state="/Confirm"/>-->
+    <!--    <q>нет</q>-->
+    <!--    <a state="/AskPhone"/>-->
+    <!--</test-case>-->
+    
     <test-case>
         <context var="client">
             {"phone": "+79099093311"}
@@ -14,5 +31,20 @@
         <a state="/Confirm"/>
         <q>нет</q>
         <a state="/AskPhone"/>
+    </test-case>
+    
+    <test-case>
+        <q>/start</q>
+        <a state="/Welcome"/>
+        <a state="/Welcome"/>
+        <a state="/SuggestHelp"/>
+        <mockData>
+            <query method = "get">https://api.openweathermap.org/data/2.5/weather?q=%D0%A1%D0%B8%D0%B1%D0%B0%D0%B9&amp;appid=5a7ade53c6ce1620826fb9f6783bfc0b&amp;units=metric&amp;lang=ru</query>
+            <response>{"coord":{"lon":58.6658,"lat":52.7181},"weather":[{"id":802,"main":"Clouds","description":"переменная облачность","icon":"03d"}],"base":"stations","main":{"temp":22.7,"feels_like":22.59,"temp_min":22.7,"temp_max":22.7,"pressure":1010,"humidity":60,"sea_level":1010,"grnd_level":968},"visibility":10000,"wind":{"speed":8.39,"deg":309,"gust":10.58},"clouds":{"all":25},"dt":1657958338,"sys":{"country":"RU","sunrise":1657929618,"sunset":1657988520},"timezone":18000,"id":493160,"name":"Сибай","cod":200}</response>
+        </mockData>
+        
+        <q>Хочу билет из парижа в сибай на завтра</q>
+        <a state="/Direction"></a>
+        <a state="/Weather"></a>
     </test-case>
 </test>    

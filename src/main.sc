@@ -120,3 +120,11 @@ theme: /
             $temp.weather = getCurrentWeather($session.destination);
         if: $temp.weather
             a: В городе {{$session.destination}} сейчас {{$temp.weather.description}}, температура {{$temp.weather.temp}}°C
+            
+    state: Test
+        event!: test
+        a: Привет тебе из кода!
+        script: 
+            $temp.weather = getCurrentWeather("Тюмень");
+        if: $temp.weather
+            a: В городе {{$session.destination}} сейчас {{$temp.weather.description}}, температура {{$temp.weather.temp}}°C
